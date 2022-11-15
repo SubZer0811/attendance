@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity{
     Button loginButton;
     Button regButton;
 //    static String postUrl = "http://34.163.54.131:5000/";
-    static String postUrl = "http://172.16.26.104:5000/";
+    static String postUrl = "http://172.16.29.30:5000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

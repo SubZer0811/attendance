@@ -16,12 +16,13 @@ import com.google.zxing.integration.android.IntentResult;
 // implements onClickListener for the onclick behaviour of button
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener {
     Button scanBtn;
-
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
-
+        username = getIntent().getStringExtra("username");
+        Log.d("USERNAME", username);
         scanBtn = findViewById(R.id.scanBtn);
         scanBtn.setOnClickListener(this);
 
@@ -45,6 +46,8 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         // if the intentResult is null then
         // toast a message as "cancelled"
         Log.d("Scan Result", intentResult.getContents());
+        Log.d("Scan Result", intentResult.toString());
+
         if (intentResult != null) {
             if (intentResult.getContents() == null) {
                 Toast.makeText(getBaseContext(), "Cancelled", Toast.LENGTH_SHORT).show();
@@ -53,6 +56,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                 // the content and format of scan message
                 Intent intent = new Intent(ScanActivity.this, PostScan.class);
                 intent.putExtra("QRValue", intentResult.getContents());
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         } else {

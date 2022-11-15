@@ -70,7 +70,9 @@ public class LoginActivity extends AppCompatActivity {
         responseText.setText(msg);
 
         if(msg.equals("success")) {
-            startActivity(new Intent(LoginActivity.this, ScanActivity.class));
+            Intent intent = new Intent(LoginActivity.this, ScanActivity.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
         }
     }
 }

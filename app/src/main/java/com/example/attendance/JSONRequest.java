@@ -59,7 +59,7 @@ public class JSONRequest {
             public void run() {
                 try (Response response = client.newCall(request).execute()) {
                     JSONresp[0] = new JSONObject(response.body().string().trim());
-                    String message = JSONresp[0].getString("error_message");
+                    String message = JSONresp[0].getString("message");
                     Log.v("IS IT WORKING", message);
                 } catch (IOException e) {
                     String error_msg = "{'error_message':'Failed to Connect to Server. Please Try Again.'}";
