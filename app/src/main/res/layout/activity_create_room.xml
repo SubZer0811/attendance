@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateRoomActivity">
+
+    <TextView
+        android:id="@+id/locsTV"
+        android:layout_width="326dp"
+        android:layout_height="111dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scanCorner"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <Button
+        android:id="@+id/scanCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="scanCorner"
+        android:text="Scan Corner"
+        app:layout_constraintBottom_toBottomOf="@+id/nextCorner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextCorner"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/hallNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="H01"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/scanCorner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.904" />
+
+    <Button
+        android:id="@+id/nextCorner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="nextCorner"
+        android:text="Next Corner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266" />
+
+    <TextView
+        android:id="@+id/classRoomNumber"
+        android:layout_width="159dp"
+        android:layout_height="20dp"
+        android:text="Room/Zone Name"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/hallNumber"
+        app:layout_constraintEnd_toEndOf="@+id/hallNumber"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/hallNumber"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room/Zone Coordinates"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/locsTV"
+        app:layout_constraintEnd_toEndOf="@+id/locsTV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/locsTV"
+        app:layout_constraintTop_toBottomOf="@+id/scanCorner"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:onClick="submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locsTV"
+        app:layout_constraintVertical_bias="0.289" />
+
+    <TextView
+        android:id="@+id/submitFeedback"
+        android:layout_height="64dp"
+        android:textColor="#ff0000"
+        android:layout_width="222dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

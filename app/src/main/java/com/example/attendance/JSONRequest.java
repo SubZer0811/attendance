@@ -1,6 +1,6 @@
 package com.example.attendance;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -8,14 +8,14 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.HttpUrl;
+import okhttp3.Cookie;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.internal.http2.Header;
 
 public class JSONRequest {
 
@@ -43,12 +43,19 @@ public class JSONRequest {
     public static JSONObject postRequest(String postUrl, RequestBody postBody) throws InterruptedException {
         OkHttpClient client = new OkHttpClient();
 
-        final Request request = new Request.Builder()
+        final Request.Builder requestBuilder = new Request.Builder()
                 .url(postUrl)
                 .post(postBody)
                 .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .build();
+                .header("Content-Type", "application/json");
+
+        if(MainActivity.cookie != null) {
+//            requestBuilder.header("Cookie", MainActivity.cookie);
+            requestBuilder.header("Cookie", MainActivity.cookie);
+        }
+
+        final Request request = requestBuilder.build();
+
 
 //        final JSONObject[] response = new JSONObject[1];
         Log.d("START", "START");
@@ -58,9 +65,13 @@ public class JSONRequest {
             @Override
             public void run() {
                 try (Response response = client.newCall(request).execute()) {
+                    Headers headers = response.headers();
+
+                    if(headers.get("Set-Cookie") != null) {
+                        MainActivity.cookie = headers.get("Set-Cookie");
+                    }
+
                     JSONresp[0] = new JSONObject(response.body().string().trim());
-                    String message = JSONresp[0].getString("message");
-                    Log.v("IS IT WORKING", message);
                 } catch (IOException e) {
                     String error_msg = "{'error_message':'Failed to Connect to Server. Please Try Again.'}";
                     try {

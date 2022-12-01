@@ -14,13 +14,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 // implements onClickListener for the onclick behaviour of button
-public class ScanActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     Button scanBtn;
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
+        setContentView(R.layout.activity_home);
         username = getIntent().getStringExtra("username");
         Log.d("USERNAME", username);
         scanBtn = findViewById(R.id.scanBtn);
@@ -34,7 +34,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
         // of IntentIntegrator class
         // which is the class of QR library
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-        intentIntegrator.setPrompt("Scan a barcode or QR Code");
+        intentIntegrator.setPrompt("Scan a QR Code");
         intentIntegrator.setOrientationLocked(true);
         intentIntegrator.initiateScan();
     }
@@ -54,7 +54,7 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 // if the intentResult is not null we'll set
                 // the content and format of scan message
-                Intent intent = new Intent(ScanActivity.this, PostScan.class);
+                Intent intent = new Intent(HomeActivity.this, PostScan.class);
                 intent.putExtra("QRValue", intentResult.getContents());
                 intent.putExtra("username", username);
                 startActivity(intent);

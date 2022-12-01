@@ -15,16 +15,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -70,9 +60,15 @@ public class LoginActivity extends AppCompatActivity {
         responseText.setText(msg);
 
         if(msg.equals("success")) {
-            Intent intent = new Intent(LoginActivity.this, ScanActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
+            if(username.toString().equals("admin")) {
+                Intent intent = new Intent(LoginActivity.this, CreateRoomActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
         }
     }
 }

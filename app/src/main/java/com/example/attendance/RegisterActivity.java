@@ -32,6 +32,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+//        Intent intent = new Intent(RegisterActivity.this, FaceRecogActivity.class);
+//        intent.putExtra("mode", "train");
+//        startActivity(intent);
+//        finish();
         Button regBtn = findViewById(R.id.regBtn);
         regBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -52,26 +56,19 @@ public class RegisterActivity extends AppCompatActivity {
         EditText passwordView = findViewById(R.id.pwdInpText);
         EditText passwordRepView = findViewById(R.id.pwdRepInpText);
 
-        RadioButton studBtn = findViewById(R.id.studBtn);
-        RadioButton facBtn = findViewById(R.id.facBtn);
+//        RadioButton studBtn = findViewById(R.id.studBtn);
+//        RadioButton facBtn = findViewById(R.id.facBtn);
 
         String username = usernameView.getText().toString().trim();
         String fullname = fullnameView.getText().toString().trim();
         String password = passwordView.getText().toString().trim();
         String passwordRep = passwordRepView.getText().toString().trim();
-        int role = -1;
+        int role = 2;
 
         TextView responseText = findViewById(R.id.responseTextRegister);
         responseText.setText("Connecting to server...");
 
-        if(studBtn.isChecked()) {
-            role = 2;
-        }
-        if(facBtn.isChecked()) {
-            role = 1;
-        }
-
-        if (fullname.length() == 0 || username.length() == 0 || password.length() == 0 || passwordRep.length() == 0 || role == -1) {
+        if (fullname.length() == 0 || username.length() == 0 || password.length() == 0 || passwordRep.length() == 0) {
             Toast.makeText(getApplicationContext(), "All fields need to be filled.", Toast.LENGTH_LONG).show();
         } else {
             String keys[] = {"username", "fullname", "password", "password_rep", "role"};
@@ -83,6 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
             responseText.setText(msg);
 
             if(msg.equals("success")) {
+                Intent intent = new Intent(RegisterActivity.this, FaceRecogActivity.class);
+                intent.putExtra("mode", "train");
+                startActivity(intent);
                 finish();
             }
         }
